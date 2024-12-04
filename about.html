@@ -1,0 +1,190 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;1,700&display=swap" rel="stylesheet">  
+    <!-- Feather -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Alpine JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- App -->
+    <script src="app.js" async></script>
+
+    <title>WEB</title>
+  
+    
+  </head>
+
+  <body>
+    <!-- navbar Start -->
+    <nav class="navbar" x-data>
+      <a href="#"class="navbar-logo">Bu<span>Bar</span></a>
+
+      <div class="navbar-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">Tentang Kami</a>
+        <a href="index.html#menu">Produk</a>
+        <a href="index.html#contact">Hubungi</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-button">
+          <i data-feather="shopping-cart"></i>
+          <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+        </a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- Search Form start -->
+       <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box"><i data-feather="search"></i></label>
+       </div>
+      <!-- Search Form end -->
+
+       <!-- Shopping Cart Start -->
+      <div class="shopping-cart">
+        <template x-for="(item, index) in $store.cart.items" x-key="index">
+          <div class="cart-item">
+            <img :src="`ctg/${item.img}`" :alt="item.name">
+          <div class="item-detail">
+            <h3 x-text="item.name"></h3>
+            <div class="item-price">
+              <span x-text=Rupiah(item.price)></span> &times;
+              <button id="remove" @click="$store.cart.remove(item.id)">-</button>
+              <span x-text="item.quantity"></span>
+              <button id="add" @click="$store.cart.add(item)">+</button> &equals;
+              <span x-text="Rupiah(item.total)"></span>
+            </div>
+          </div>
+          </div>
+        </template>
+        <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem;">Keranjang Kosong! Dibeli Atuh Bang!</h4>
+        <h4 x-show="$store.cart.items.length">Total : <span x-text="Rupiah($store.cart.total)"></span></h4>
+
+        <div class="form-container" x-show="$store.cart.items.length">
+          <form action="" id="checkoutForm"></form>
+            <h5>Customer Detail</h5>
+          
+            <label for="name">
+              <span>Name</span>
+              <input type="text" name="nama" id="name">
+            </label>
+            <label for="email">
+              <span>Email</span>
+              <input type="email" name="email" id="email">
+            </label>
+            <label for="hp">
+              <span>Telpon</span>
+              <input type="number" name="phone" id="phone" autocomplete="off">
+            </label>
+          
+            <button class="checkout-button" type="submit" id="checkout-button" value="checkout">CheckOut</button> 
+          </form>
+        </div>
+      </div>
+      <!-- Shopping Cart End -->
+    </nav>
+    <!-- navbar End -->
+
+    <!-- about section start -->
+    <section id="about" class="about">
+      <h2>Selamat datang di <span> Bukan Sembarangan!</span></h2>
+      <!-- <h3>Kami adalah toko pakaian yang menghadirkan pilihan busana berkualitas untuk menunjang gaya dan kenyamanan Anda. Dengan mengusung konsep Trendy, Modis, dan Elegan, kami berkomitmen menyediakan koleksi yang sesuai dengan kebutuhan dan tren terkini.</h3> -->
+      <div class="row">
+        <div class="about-img">
+          <img src="img/banner.jpg" alt="Tentang Kami">
+        </div>
+        <div class="content">
+          <h3>Kenapa Memilih Kami?</h3>
+          <p>Kualitas Terjamin: Setiap produk kami dipilih dengan cermat untuk memastikan Anda mendapatkan pakaian yang nyaman dan tahan lama.
+
+            Harga Terjangkau: Kami percaya bahwa gaya tidak harus mahal. Nikmati koleksi terbaik dengan harga bersahabat.
+            
+            Pelayanan Profesional: Kepuasan pelanggan adalah prioritas kami. Tim kami siap membantu Anda menemukan busana terbaik sesuai keinginan.
+            
+            Tren Terkini: Koleksi kami selalu diperbarui agar Anda tetap tampil fashionable setiap saat.
+            
+            
+            Bergabunglah bersama pelanggan kami yang telah mempercayakan kebutuhan fashion mereka kepada kami. Kami tidak hanya menjual pakaian, tetapi juga menawarkan pengalaman berbelanja yang menyenangkan.
+          </p>
+          <h3>Visi Kami</h3>
+          <p>
+            Menjadi pilihan utama dalam dunia fashion yang menghadirkan pakaian berkualitas tinggi dengan layanan terbaik untuk semua kalangan.
+          </p>
+          <h3>Misi Kami</h3>
+          <p>Menghadirkan produk berkualitas tinggi dengan desain yang menarik.
+            
+            Memberikan pelayanan terbaik untuk menciptakan pengalaman berbelanja yang nyaman.
+            
+            Menyediakan koleksi pakaian yang beragam dan sesuai dengan kebutuhan pelanggan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Start -->
+    <!-- Footer Start -->
+    <!-- Footer Start -->
+    <footer>
+      <div class="socials">
+        <a href="https://instagram.com/ariqraf_"><i data-feather="instagram" link="https://instagram.com/ariqraf_"></i></a>
+        <a href="#"><i data-feather="twitter"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+      </div>
+      <div class="links">
+        <a href="index.html#home">Home</a>
+        <a href="about.html">Tentang Kami</a>
+        <a href="index.html#menu">Produk</a>
+        <a href="index.html#contact">Hubungi Kami</a>
+      </div>
+      
+      <div class="credit">
+        <p>Created by <a href="">Kelompok 3</a> | &copy; 2024. </p>
+      </div>
+    </footer>
+    <!-- Footer End -->
+    
+    <!-- Modal Box Item Start -->
+    <div class="modal" id="item-detail-modal">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="ctg/kaos 1.jpg" alt="Product 1">
+          <div class="product-content">
+            <h3>Product 1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus voluptatem ipsam, animi optio dicta amet eum similique blanditiis officiis delectus soluta deleniti, provident reprehenderit porro?</p>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+            </div>
+            <div class="product-price">
+              IDR 30K <span>IDR 130K</span>
+              <a href="#"><i data-feather="shopping-cart"></i><span>Add to Cart</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Box Item End -->
+
+    <!-- Contact Section End -->
+    <script>
+      feather.replace();
+    </script>
+    <!-- javascript -->
+    <script src="script.js"></script>
+  </body>
+</html>
